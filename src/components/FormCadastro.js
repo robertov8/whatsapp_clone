@@ -26,6 +26,7 @@ class FormCadastro extends Component {
                         style={{ fontSize: 20, height: 45 }}
                         placeholder='Senha'
                         onChangeText={texto => this.props.modificaSenha(texto)}
+                        secureTextEntry
                     />
                 </View>
                 <View style={{ flex: 1 }}>

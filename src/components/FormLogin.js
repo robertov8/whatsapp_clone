@@ -25,6 +25,7 @@ class FormLogin extends Component {
                         style={{ fontSize: 20, height: 45 }}
                         placeholder='Senha'
                         onChangeText={texto => this.props.modificaSenha(texto)}
+                        secureTextEntry
                     />
                     <TouchableHighlight onPress={() => Actions.formCadastro()}>
                         <Text style={{ fontSize: 20 }}>Ainda não tem cadastro? Cadastre-se</Text>
