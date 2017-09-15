@@ -6,7 +6,7 @@ export default props => (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 25 }}>WhatsApp Clone</Text>
         </View>
-
+        
         <View style={{ flex: 2 }}>
             <TextInput style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
             <TextInput style={{ fontSize: 20, height: 45 }} placeholder='Senha' />
@@ -17,4 +17,4 @@ export default props => (
             <Button title='Acessar' color='#115E54' onPress={() => false}/>
         </View>
     </View>
-)
+);
