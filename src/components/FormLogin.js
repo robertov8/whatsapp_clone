@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import { modificaEmail } from '../actions/AutenticacaoActions';
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 
 class FormLogin extends Component {
     render() {
@@ -20,7 +20,12 @@ class FormLogin extends Component {
                         placeholder='E-mail'
                         onChangeText={texto => this.props.modificaEmail(texto)}
                     />
-                    <TextInput value={this.props.senha} style={{ fontSize: 20, height: 45 }} placeholder='Senha' />
+                    <TextInput
+                        value={this.props.senha}
+                        style={{ fontSize: 20, height: 45 }}
+                        placeholder='Senha'
+                        onChangeText={texto => this.props.modificaSenha(texto)}
+                    />
                     <TouchableHighlight onPress={() => Actions.formCadastro()}>
                         <Text style={{ fontSize: 20 }}>Ainda não tem cadastro? Cadastre-se</Text>
                     </TouchableHighlight>
@@ -39,4 +44,4 @@ const mapStateToProps = state => ({
     senha: state.AutenticaoReducer.senha
 });
 
-export default connect(mapStateToProps, { modificaEmail })(FormLogin);
+export default connect(mapStateToProps, { modificaEmail, modificaSenha })(FormLogin);
