@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
+import AutenticaoReducer from './AutenticaoReducer';
+
 export default combineReducers({
-    reducer1: () => [],
-    reducer2: () => [],
+    AutenticaoReducer: AutenticaoReducer
 });
