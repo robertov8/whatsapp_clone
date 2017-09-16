@@ -23,7 +23,7 @@ export const adicionaContato = (email) => {
         .then((snapshot) => {
             if (snapshot.val()) {
                 // email do contato que queremos adicionar
-                console.log(email);
+                console.log(snapshot.val());
 
                 // email do usuário autenticado.
                 const { currentUser } = firebase.auth();
