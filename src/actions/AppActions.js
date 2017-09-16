@@ -4,7 +4,8 @@ import _ from 'lodash';
 
 import {
     MODIFICA_ADICIONA_CONTATO_EMAIL,
-    ADICIONA_CONTATO_ERRO
+    ADICIONA_CONTATO_ERRO,
+    ADICIONA_CONTATO_SUCESSO
 } from './types';
 
 export const modificaAdicionarContatoEmail = (texto) => {
@@ -34,7 +35,7 @@ export const adicionaContato = (email) => {
                 firebase.database()
                     .ref(`/usuario_contatos/${emailUsuarioB64}`)
                     .push({ email, nome: dadosUsuario.nome })
-                    .then(() => console.log('Sucesso'))
+                    .then(() => adicionaContatoSucesso(dispatch))
                     .catch(erro => adicionaContatoErro(erro.message, dispatch));
             } else {
                 dispatch({
@@ -52,3 +53,7 @@ const adicionaContatoErro = (erro, dispatch) => {
         payload: erro
     });
 };
+
+const adicionaContatoSucesso = (dispatch) => {
+    dispatch({ type: ADICIONA_CONTATO_SUCESSO });
+}
