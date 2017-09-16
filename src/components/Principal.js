@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
+
+import TabBarMenu from './TabBarMenu';
 
 const Conversas = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
 const Contatos = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
@@ -16,7 +18,7 @@ export default class Principal extends Component {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar {...props} />;
+  _renderHeader = props => <TabBarMenu {...props} />;
 
   _renderScene = SceneMap({
     '1': Conversas,
