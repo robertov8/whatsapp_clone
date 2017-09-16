@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const backGround = require('../imgs/bg.png');
 const logo = require('../imgs/logo.png');
@@ -15,7 +16,7 @@ export default props => (
             <View style={{ flex: 1 }}>
                 <Button
                     title='Fazer Login'
-                    onPress={() => false}
+                    onPress={() => Actions.formLogin() }
                 />
             </View>
         </View>

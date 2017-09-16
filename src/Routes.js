@@ -8,9 +8,9 @@ import BoasVindas from './components/BoasVindas';
 export default props => (
     <Router>
         <Stack key='root'>
-            <Scene key='boasVindas' component={BoasVindas} title='Bem-Vindo' />
             <Scene key='formLogin' component={FormLogin} title='Login' />
             <Scene key='formCadastro' component={FormCadastro} title='Cadastro' />
+            <Scene key='boasVindas' component={BoasVindas} title='Bem-Vindo' />
         </Stack>
     </Router>
 );
