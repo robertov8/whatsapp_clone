@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import { View, TextInput, Button, Image } from 'react-native';
 import { connect } from 'react-redux';
 
-import { modificaNome, modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
+import {
+    modificaNome,
+    modificaEmail,
+    modificaSenha,
+    cadastraUsuario
+} from '../actions/AutenticacaoActions';
 
 const backGround = require('../imgs/bg.png');
 
 class FormCadastro extends Component {
+
+    _cadastraUsuario() {
+        const { nome, email, senha } = this.props;
+        this.props.cadastraUsuario({ nome, email, senha });
+    }
+
     render() {
         return (
             <Image style={{ flex: 1, width: null }} source={backGround}>
@@ -36,7 +47,10 @@ class FormCadastro extends Component {
                         />
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Button title='Cadastrar' color='#115E54' onPress={() => false } />
+                        <Button
+                            title='Cadastrar'
+                            color='#115E54'
+                            onPress={() => this._cadastraUsuario() } />
                     </View>
                 </View>
             </Image>
@@ -50,4 +64,9 @@ const mapStateToProps = state => ({
     senha: state.AutenticaoReducer.senha
 });
 
-export default connect(mapStateToProps, { modificaNome, modificaEmail, modificaSenha })(FormCadastro);
+export default connect(mapStateToProps, {
+    modificaNome,
+    modificaEmail,
+    modificaSenha,
+    cadastraUsuario
+})(FormCadastro);

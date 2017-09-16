@@ -18,3 +18,9 @@ export const modificaSenha = (texto) => {
         payload: texto
     };
 };
+
+export const cadastraUsuario = ({ nome, email, senha }) => {
+    return {
+        type: 'teste'
+    }
+}
