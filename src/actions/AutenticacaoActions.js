@@ -39,8 +39,11 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
 };
 
 export const autenticarUsuario = ({ email, senha }) => {
-    console.log(email);
-    console.log(senha);
+
+    firebase.auth().signInWithEmailAndPassword(email, senha)
+        .then(value => console.log(value))
+        .catch(erro => console.log(erro));
+
     return { type: 'teste' };
 };
 
