@@ -6,35 +6,35 @@ import _ from 'lodash';
 import { contatosUsuarioFetch } from '../actions/AppActions';
 
 class Contatos extends Component {
-    constructor(props) {
-        super(props);
 
+    componentWillMount() {
+        this.props.contatosUsuarioFetch();
+        this.criaFonteDeDados(this.props.contatos);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.criaFonteDeDados(nextProps.contatos);
+    }
+
+    criaFonteDeDados(contatos) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });
 
-        this.state = { fonteDeDados: ds.cloneWithRows([
-            'Registro 1',
-            'Registro 2',
-            'Registro 3',
-            'Registro 4'
-        ])};
-    }
-
-    componentWillMount() {
-        this.props.contatosUsuarioFetch();
-        console.log('recuperado via props: ', this.props.contatos);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('recuperado via props após update:', nextProps.contatos);
+        this.fonteDeDados  = ds.cloneWithRows(contatos);
     }
 
     render() {
         return (
             <ListView
-                dataSource={this.state.fonteDeDados}
-                renderRow={data => <View><Text>{data}</Text></View>}
+                enableEmptySections
+                dataSource={this.fonteDeDados}
+                renderRow={data => (
+                    <View>
+                        <Text>{data.nome}</Text>
+                        <Text>{data.email}</Text>
+                    </View>
+                )}
             />
         );
     }
@@ -44,7 +44,7 @@ const mapStateToProps = state => {
     const contatos = _.map(state.ListaContatosReducer, (val, uid) => {
         return { ...val, uid };
     });
-    console.log(contatos);
+
     return { contatos };
 };
 
