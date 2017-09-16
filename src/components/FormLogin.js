@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, TouchableHighlight, Image } from 'react-native';
+import { View, Text, TextInput, Button, TouchableHighlight, Image, ActivityIndicator } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -12,6 +12,21 @@ class FormLogin extends Component {
     _autenticarUsuario() {
         const { email, senha } = this.props;
         this.props.autenticarUsuario({ email, senha });
+    }
+
+    renderBtnAcessar() {
+        if (this.props.loading_login) {
+            return (
+                <ActivityIndicator size='large' />
+            );
+        }
+        return (
+            <Button
+                title='Acessar'
+                color='#115E54'
+                onPress={() => this._autenticarUsuario()}
+            />
+        );
     }
 
     render() {
@@ -46,11 +61,7 @@ class FormLogin extends Component {
                     </View>
 
                     <View style={{ flex: 2 }}>
-                        <Button
-                            title='Acessar'
-                            color='#115E54'
-                            onPress={() => this._autenticarUsuario()}
-                        />
+                        { this.renderBtnAcessar() }
                     </View>
                 </View>
             </Image>
@@ -61,7 +72,8 @@ class FormLogin extends Component {
 const mapStateToProps = state => ({
     email: state.AutenticaoReducer.email,
     senha: state.AutenticaoReducer.senha,
-    erroLogin: state.AutenticaoReducer.erroLogin
+    erroLogin: state.AutenticaoReducer.erroLogin,
+    loading_login: state.AutenticaoReducer.loading_login
 });
 
 export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(FormLogin);

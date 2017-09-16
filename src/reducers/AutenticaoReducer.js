@@ -1,10 +1,3 @@
-const INITIAL_STATE = {
-    nome: '',
-    email: '',
-    senha: '',
-    erroCadastro: '',
-    erroLogin: ''
-}
 import {
     MODIFICA_EMAIL,
     MODIFICA_SENHA,
@@ -12,8 +5,18 @@ import {
     CADASTRO_USUARIO_SUCESSO,
     CADASTRO_USUARIO_ERRO,
     LOGIN_USUARIO_SUCESSO,
-    LOGIN_USUARIO_ERRO
+    LOGIN_USUARIO_ERRO,
+    LOGIN_EM_ANDAMENTO
 } from '../actions/types';
+
+const INITIAL_STATE = {
+    nome: '',
+    email: '',
+    senha: '',
+    erroCadastro: '',
+    erroLogin: '',
+    loading_login: false
+}
 
 export default (state = INITIAL_STATE, action) => {
     console.log(action);
@@ -34,7 +37,10 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, nome: '', senha: '' };
             break;
         case LOGIN_USUARIO_ERRO:
-            return { ...state, erroLogin: action.payload };
+            return { ...state, erroLogin: action.payload, loading_login: false };
+            break;
+        case LOGIN_EM_ANDAMENTO:
+            return { ...state, loading_login: true };
             break;
 
         default:
