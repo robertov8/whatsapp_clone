@@ -72,7 +72,8 @@ export const contatosUsuarioFetch = () => {
 
         firebase.database()
             .ref(`/usuario_contatos/${emailUsuarioB64}`)
-            on('value', snapshot => {
+            .on('value', snapshot => {
+                console.log(snapshot.val());
                 dispatch({ type: LISTA_CONTATO_USUARIO, payload: snapshot.val() });
             });
     }
