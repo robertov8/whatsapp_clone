@@ -35,7 +35,7 @@ export const adicionaContato = (email) => {
                     .ref(`/usuario_contatos/${emailUsuarioB64}`)
                     .push({ email, nome: dadosUsuario.nome })
                     .then(() => console.log('Sucesso'))
-                    .catch(erro => console.log(erro.message));
+                    .catch(erro => adicionaContatoErro(erro.message, dispatch));
             } else {
                 dispatch({
                     type: ADICIONA_CONTATO_ERRO,
@@ -45,3 +45,10 @@ export const adicionaContato = (email) => {
         });
     }
 }
+
+const adicionaContatoErro = (erro, dispatch) => {
+    dispatch({
+        type: ADICIONA_CONTATO_ERRO,
+        payload: erro
+    });
+};
