@@ -57,7 +57,7 @@ const cadastroUsuarioErro = (erro, dispatch) => {
 
 const loginUsuarioSucesso = (dispatch) => {
     dispatch ({ type: 'login_usuario_sucesso' });
-    // Actions.telaPrincipal();
+    Actions.principal();
 };
 
 const loginUsuarioErro = (erro, dispatch) => {
