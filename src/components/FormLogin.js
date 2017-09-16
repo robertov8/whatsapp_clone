@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, TouchableHighlight, Image, ActivityIndicator } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    Button,
+    TouchableHighlight,
+    Image,
+    ActivityIndicator
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -16,9 +24,7 @@ class FormLogin extends Component {
 
     renderBtnAcessar() {
         if (this.props.loading_login) {
-            return (
-                <ActivityIndicator size='large' />
-            );
+            return ( <ActivityIndicator size='large' /> );
         }
         return (
             <Button
