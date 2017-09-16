@@ -23,6 +23,11 @@ class Contatos extends Component {
 
     componentWillMount() {
         this.props.contatosUsuarioFetch();
+        console.log('recuperado via props: ', this.props.contatos);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('recuperado via props após update:', nextProps.contatos);
     }
 
     render() {
@@ -40,7 +45,7 @@ const mapStateToProps = state => {
         return { ...val, uid };
     });
     console.log(contatos);
-    return {}
+    return { contatos };
 };
 
 export default connect(mapStateToProps, { contatosUsuarioFetch })(Contatos);
