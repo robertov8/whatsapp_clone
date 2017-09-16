@@ -38,6 +38,8 @@ class FormLogin extends Component {
                             onChangeText={texto => this.props.modificaSenha(texto)}
                             secureTextEntry
                         />
+
+                        <Text style={{ color: '#ff0000', fontSize: 18 }}>{this.props.erroLogin}</Text>
                         <TouchableHighlight onPress={() => Actions.formCadastro()}>
                             <Text style={{ fontSize: 20, color: '#fff' }}>Ainda não tem cadastro? Cadastre-se</Text>
                         </TouchableHighlight>
@@ -58,7 +60,8 @@ class FormLogin extends Component {
 
 const mapStateToProps = state => ({
     email: state.AutenticaoReducer.email,
-    senha: state.AutenticaoReducer.senha
+    senha: state.AutenticaoReducer.senha,
+    erroLogin: state.AutenticaoReducer.erroLogin
 });
 
 export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(FormLogin);
