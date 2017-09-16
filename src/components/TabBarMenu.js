@@ -13,7 +13,7 @@ export default props => (
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <Text style={{ color: '#fff', fontSize: 20, marginLeft: 20 }}>WhatsApp Clone</Text>
             </View>
-            
+
             <View style={{ flexDirection: 'row', marginRight: 20 }}>
                 <View style={{ width: 50, justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableHighlight
