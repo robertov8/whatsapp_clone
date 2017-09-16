@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, cadastro_resultado_txt_erro: action.payload };
             break;
         case ADICIONA_CONTATO_SUCESSO:
-            return { ...state, cadastro_resultado_inclusao: true };
+            return { ...state, cadastro_resultado_inclusao: action.payload, adiciona_contato_email: '' };
             break;
 
         default:
