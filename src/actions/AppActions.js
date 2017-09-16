@@ -22,7 +22,18 @@ export const adicionaContato = (email) => {
         .once('value')
         .then((snapshot) => {
             if (snapshot.val()) {
-                console.log('Usuário existe');
+                // email do contato que queremos adicionar
+                console.log(email);
+
+                // email do usuário autenticado.
+                const { currentUser } = firebase.auth();
+                let emailUsuarioB64 = b64.encode(currentUser.email);
+
+                firebase.database()
+                    .ref(`/usuario_contatos/${emailUsuarioB64}`)
+                    .push({ email, nome: 'Nome do contato' })
+                    .then(() => console.log('Sucesso'))
+                    .catch(erro => console.log(erro.message));
             } else {
                 dispatch({
                     type: ADICIONA_CONTATO_ERRO,
