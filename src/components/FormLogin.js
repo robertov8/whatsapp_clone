@@ -3,11 +3,17 @@ import { View, Text, TextInput, Button, TouchableHighlight, Image } from 'react-
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
+import { modificaEmail, modificaSenha, autenticarUsuario } from '../actions/AutenticacaoActions';
 
 const backGround = require('../imgs/bg.png');
 
 class FormLogin extends Component {
+
+    _autenticarUsuario() {
+        const { email, senha } = this.props;
+        this.props.autenticarUsuario({ email, senha });
+    }
+
     render() {
         return (
             <Image style={{ flex: 1, width: null }} source={backGround}>
@@ -38,7 +44,11 @@ class FormLogin extends Component {
                     </View>
 
                     <View style={{ flex: 2 }}>
-                        <Button title='Acessar' color='#115E54' onPress={() => false}/>
+                        <Button
+                            title='Acessar'
+                            color='#115E54'
+                            onPress={() => this._autenticarUsuario()}
+                        />
                     </View>
                 </View>
             </Image>
@@ -51,4 +61,4 @@ const mapStateToProps = state => ({
     senha: state.AutenticaoReducer.senha
 });
 
-export default connect(mapStateToProps, { modificaEmail, modificaSenha })(FormLogin);
+export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(FormLogin);

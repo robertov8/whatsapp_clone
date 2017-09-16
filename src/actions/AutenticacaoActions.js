@@ -38,6 +38,12 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
     };
 };
 
+export const autenticarUsuario = ({ email, senha }) => {
+    console.log(email);
+    console.log(senha);
+    return { type: 'teste' };
+};
+
 const cadastroUsuarioSucesso = (dispatch) => {
     dispatch ({ type: 'cadastro_usuario_sucesso' });
     Actions.boasVindas();
