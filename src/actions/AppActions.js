@@ -82,3 +82,7 @@ export const contatosUsuarioFetch = () => {
 export const modificaMensagem = (texto) => {
     return ({ type: MODIFICA_MENSAGEM, payload: texto });
 }
+
+export const enviarMensagem = (mensagem) => {
+    return ({ type: 'xyz' });
+}

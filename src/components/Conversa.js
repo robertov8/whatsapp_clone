@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { modificaMensagem } from '../actions/AppActions';
+import { modificaMensagem, enviarMensagem } from '../actions/AppActions';
 
 const btnEnviar = require('../imgs/enviar_mensagem.png');
 
@@ -19,7 +19,7 @@ class Conversa extends Component {
                     />
 
                     <TouchableHighlight
-                        onPress={() => false}
+                        onPress={() => this.props.enviarMensagem(this.props.mensagem)}
                         underlayColor='#fff'
                     >
                         <Image source={btnEnviar} />
@@ -34,4 +34,4 @@ const mapStateToProps = state => ({
     mensagem: state.AppReducer.mensagem
 });
 
-export default connect(mapStateToProps, { modificaMensagem })(Conversa);
+export default connect(mapStateToProps, { modificaMensagem, enviarMensagem })(Conversa);
