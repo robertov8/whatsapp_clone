@@ -6,7 +6,8 @@ import {
     MODIFICA_ADICIONA_CONTATO_EMAIL,
     ADICIONA_CONTATO_ERRO,
     ADICIONA_CONTATO_SUCESSO,
-    LISTA_CONTATO_USUARIO
+    LISTA_CONTATO_USUARIO,
+    MODIFICA_MENSAGEM
 } from './types';
 
 export const modificaAdicionarContatoEmail = (texto) => {
@@ -76,4 +77,8 @@ export const contatosUsuarioFetch = () => {
                 dispatch({ type: LISTA_CONTATO_USUARIO, payload: snapshot.val() });
             });
     }
+}
+
+export const modificaMensagem = (texto) => {
+    return ({ type: MODIFICA_MENSAGEM, payload: texto });
 }
