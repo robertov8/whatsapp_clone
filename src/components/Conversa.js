@@ -22,6 +22,9 @@ class Conversa extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (this.props.contatoEmail != nextProps.contatoEmail) {
+            this.props.conversaUsuarioFetch(nextProps.contatoEmail);
+        }
         this.criaFonteDeDados(nextProps.conversa);
     }
 
