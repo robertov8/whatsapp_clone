@@ -6,6 +6,13 @@ import { modificaMensagem, enviarMensagem } from '../actions/AppActions';
 const btnEnviar = require('../imgs/enviar_mensagem.png');
 
 class Conversa extends Component {
+
+    _enviarMensagem() {
+        const { mensagem, contatoNome, contatoEmail } = this.props;
+
+        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail);
+    }
+
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#eee4dc', padding: 10 }}>
@@ -19,7 +26,7 @@ class Conversa extends Component {
                     />
 
                     <TouchableHighlight
-                        onPress={() => this.props.enviarMensagem(this.props.mensagem)}
+                        onPress={this._enviarMensagem.bind(this)}
                         underlayColor='#fff'
                     >
                         <Image source={btnEnviar} />
