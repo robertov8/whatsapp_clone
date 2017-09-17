@@ -9,5 +9,5 @@ export default combineReducers({
     AutenticaoReducer,
     AppReducer,
     ListaContatosReducer,
-    ListaContatosReducer
+    ListaConversaReducer
 });

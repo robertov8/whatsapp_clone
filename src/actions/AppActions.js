@@ -135,7 +135,7 @@ export const conversaUsuarioFetch = (contatoEmail) => {
 
     // compor os emails na base64
     let usuarioEmail64 = b64.encode(currentUser.email);
-    let contatoEmail = b64.encode(contatoEmail);
+    let contatoEmail64 = b64.encode(contatoEmail);
 
     return dispatch => {
         firebase.database()
