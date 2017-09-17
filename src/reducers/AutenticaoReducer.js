@@ -40,6 +40,9 @@ export default (state = INITIAL_STATE, action) => {
         case LOGIN_USUARIO_ERRO:
             return { ...state, erroLogin: action.payload, loading_login: false };
             break;
+        case LOGIN_USUARIO_SUCESSO:
+            return { ...state, ...INITIAL_STATE };
+            break;
         case LOGIN_EM_ANDAMENTO:
             return { ...state, loading_login: true };
             break;
