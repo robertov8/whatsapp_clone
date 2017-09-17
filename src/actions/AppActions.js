@@ -84,8 +84,25 @@ export const modificaMensagem = (texto) => {
 }
 
 export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
-    console.log(mensagem);
-    console.log(contatoNome);
-    console.log(contatoEmail);
-    return ({ type: 'xyz' });
+
+    // dados do usuário (email)
+    const { currentUser } = firebase.auth();
+    const usuarioEmail = currentUser.email;
+
+    return dispatch => {
+
+        // Conversão para base 64
+        const usuarioEmail64 = b64.encode(usuarioEmail);
+        const contatoEmail64 = b64.encode(contatoEmail);
+
+        firebase.database()
+            .ref(`/mensagens/${usuarioEmail64}/${contatoEmail64}`)
+            .push({ mensagem, tipo: 'e' })
+            .then(() => {
+                firebase.database()
+                    .ref(`/mensagens/${contatoEmail64}/${usuarioEmail64}`)
+                    .push({ mensagem, tipo: 'r' })
+                    .then(() => dispatch({ type: 'xyz' }));
+            });
+    }
 }
