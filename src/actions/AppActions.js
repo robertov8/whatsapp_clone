@@ -99,10 +99,31 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
             .ref(`/mensagens/${usuarioEmail64}/${contatoEmail64}`)
             .push({ mensagem, tipo: 'e' })
             .then(() => {
+
                 firebase.database()
                     .ref(`/mensagens/${contatoEmail64}/${usuarioEmail64}`)
                     .push({ mensagem, tipo: 'r' })
                     .then(() => dispatch({ type: 'xyz' }));
+            })
+            .then(() => {
+                // armazenar os cabeçalho de conversa do usuário autenticado
+                firebase.database()
+                    .ref(`/usuario_conversas/${usuarioEmail64}/${contatoEmail64}`)
+                    .set({ nome: contatoNome, email: contatoEmail });
+            })
+            .then(() => {
+                // armazenar o cabeçalho de covnersa do contato.
+                firebase.database()
+                    .ref(`/contatos/${usuarioEmail64}`)
+                    .once('value')
+                    .then(snapshot => {
+
+                        const dadosUsuario = _.first(_.values(snapshot.val()));
+
+                        firebase.database()
+                        .ref(`/usuario_conversas/${contatoEmail64}/${usuarioEmail64}`)
+                        .set({ nome: dadosUsuario.nome, email: usuarioEmail });
+                    })
             });
     }
 }
